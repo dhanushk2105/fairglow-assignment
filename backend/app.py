@@ -11,12 +11,8 @@ from security import rate_limit, validate_task_input
 app = Flask(__name__)
 
 # CORS Configuration
-# Production: Replace with actual frontend domain
-# Example: CORS(app, origins=["https://app.fairglow.com"])
 CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 
-# Initialize layers
-# In production, use dependency injection or app factory pattern
 repository = TaskRepository()
 service = TaskService(repository)
 
@@ -161,5 +157,4 @@ def delete_completed_tasks():
 
 if __name__ == '__main__':
     # Development server only
-    # Production: use gunicorn/uwsgi
     app.run(debug=True, host='0.0.0.0', port=5000)
